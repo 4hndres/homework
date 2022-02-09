@@ -1,0 +1,14 @@
+html, body{
+    background-color: #120F4F;
+    color: whitesmoke;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.3rem;
+    padding: 10px;
+}
+
+img{
+    border-radius: .5ex;
+    height: 250px;
+    padding: 15;
+    width: 200px;
+}
