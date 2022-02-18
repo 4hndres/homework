@@ -1,14 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
+import PropTypes from "prop-types";
 
 const LayerApp = () => {
-  return <>
-    <h1>Infra Teatro</h1>
-    <h2>Feel good hits of the summer</h2>
+  const [inputValue, setinputValue] = useState ('')
+  const [listItems, setlistItems] = useState([])
+  let newOne= []
+  const handleAdd = (e) => { setinputValue(e.target.value) }
 
-    <div id='movieFrame'>
-        <img src='https://lh3.googleusercontent.com/pAjHitfz1-laHZuBUXqpC499PqF3jvxU_OCYwkam0qduLLo5XSPDA2m1fT797aAVuH-vvCIDQerAPU_jtqaHNUbpu4Sji2zj_A=w960-rj-nu-e365'/>
-        <p>PIED PIPER</p>
-    </div>
+  const handleClick = () => {
+    if(inputValue.trim().length > 2)  {
+      setlistItems(inputValue.trim().split(","))
+    }
+  }
+
+  const handleClean = () => {
+    listItems.map(item =>{
+      if(!newOne.includes(item.trim())){
+        newOne.push(item)
+      }
+      setlistItems(newOne)
+    })
+    console.log(newOne)
+  }
+
+  return <>
+
+    <input type="text" value={inputValue} onChange={handleAdd}></input>
+    <button onClick={handleClick}>SPLIT</button>
+    <button onClick={handleClean}>CLEAN</button>
+    <ol>
+      {
+        listItems.map(item =>{
+          return <li key={item}>{item}</li>
+        })
+      }
+    </ol>
   </>;
 };
 
